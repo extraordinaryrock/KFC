@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Nonsense — Trusted News for Untrusted Times</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111008;
+    --paper: #f5f0e8;
+    --paper-dark: #ebe4d4;
+    --red: #c0392b;
+    --gold: #b8860b;
+    --muted: #6b6457;
+    --rule: #c8bfaa;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* TOP BAR */
+  .top-bar {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 6px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .top-bar .weather { color: #aaa; }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    padding: 1.5rem 2rem 1rem;
+    text-align: center;
+    position: relative;
+  }
+  .masthead-tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+  .masthead-sub {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 5px 0;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--ink);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-right: 1px solid #333;
+    transition: background 0.15s;
+  }
+  nav a:first-child { border-left: 1px solid #333; }
+  nav a:hover { background: #333; }
+  nav a.active { background: var(--red); }
+
+  /* BREAKING BANNER */
+  .breaking {
+    background: var(--red);
+    color: white;
+    padding: 8px 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    overflow: hidden;
+  }
+  .breaking-label {
+    background: white;
+    color: var(--red);
+    font-weight: 500;
+    padding: 2px 8px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+  .breaking-text { white-space: nowrap; animation: ticker 18s linear infinite; }
+  @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1px 320px;
+    gap: 0;
+    padding: 2rem 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  .hero-main { padding-right: 2rem; }
+  .hero-divider { background: var(--rule); }
+  .hero-sidebar { padding-left: 2rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .hero-headline em { font-style: italic; color: var(--red); }
+  .byline {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-body p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+    color: #2a2519;
+  }
+  .hero-body p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    font-weight: 900;
+    float: left;
+    line-height: 0.8;
+    margin: 0.05em 0.08em 0 0;
+    color: var(--ink);
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: var(--red);
+  }
+
+  /* SIDEBAR STORIES */
+  .sidebar-story {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar-story:last-child { border-bottom: none; }
+  .sidebar-story h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  .sidebar-story p {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* THREE COLUMN */
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-bottom: 2px solid var(--ink);
+    padding: 1.5rem 0;
+  }
+  .col-story {
+    padding: 0 1.5rem;
+    border-right: 1px solid var(--rule);
+  }
+  .col-story:first-child { padding-left: 0; }
+  .col-story:last-child { border-right: none; padding-right: 0; }
+  .col-story h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+  .col-story p { font-size: 13.5px; line-height: 1.65; color: #3a3328; }
+
+  /* OPINION STRIP */
+  .opinion-strip {
+    background: var(--paper-dark);
+    border-top: 3px double var(--ink);
+    border-bottom: 3px double var(--ink);
+    padding: 1.2rem 0;
+    margin: 1.5rem 0;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    overflow-x: auto;
+  }
+  .opinion-strip-label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    padding: 0 1.5rem;
+    border-right: 1px solid var(--rule);
+    flex-shrink: 0;
+  }
+  .opinion-item {
+    flex-shrink: 0;
+    max-width: 220px;
+    padding-right: 2rem;
+    border-right: 1px solid var(--rule);
+  }
+  .opinion-item:last-child { border-right: none; }
+  .opinion-item .author {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .opinion-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  footer .footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+  }
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  /* DIVIDER ORNAMENT */
+  .ornament {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    padding: 0.5rem 0;
+  }
+
+  @media (max-width: 700px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-divider { display: none; }
+    .hero-sidebar { padding-left: 0; border-top: 1px solid var(--rule); padding-top: 1.5rem; margin-top: 1.5rem; }
+    .three-col { grid-template-columns: 1fr; }
+    .col-story { border-right: none; border-bottom: 1px solid var(--rule); padding: 1rem 0; }
+    .col-story:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>Monday, May 25, 2026 &nbsp;|&nbsp; Vol. CXLII, No. 312</span>
+  <span class="weather">Partly cloudy with a chance of misinformation &nbsp;|&nbsp; 72°F</span>
+</div>
+
+<div class="masthead">
+  <p class="masthead-tagline">Est. 1842 &nbsp;&#8212;&nbsp; Probably</p>
+  <h1>The Daily Nonsense</h1>
+  <div class="masthead-sub">
+    <span>Trusted news for untrusted times</span>
+    <span>LATE CITY EDITION</span>
+    <span>Price: Your dignity</span>
+  </div>
+</div>
+
+<nav>
+  <a href="#" class="active">Home</a>
+  <a href="#">World</a>
+  <a href="#">Politics</a>
+  <a href="#">Science</a>
+  <a href="#">Culture</a>
+  <a href="#">Opinion</a>
+  <a href="#">Classifieds</a>
+  <a href="#">Corrections</a>
+</nav>
+
+<div class="breaking">
+  <span class="breaking-label">BREAKING</span>
+  <span class="breaking-text">LOCAL MAN STILL HAS NOT REPLIED TO TEXT FROM 3 DAYS AGO &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp; EXPERTS WARN THERE IS NO COFFEE LEFT &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp; AREA DOG FOURTH CONSECUTIVE YEAR OF BEING A GOOD BOY &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp; STUDY FINDS NOBODY ACTUALLY READS TERMS AND CONDITIONS</span>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-main">
+      <p class="section-label">Top Story</p>
+      <h2 class="hero-headline">Local Man Finishes Netflix, <em>Unsure What To Do With Life</em></h2>
+      <p class="byline">By Staff Reporter &nbsp;&bull;&nbsp; May 25, 2026 &nbsp;&bull;&nbsp; 4 min read</p>
+      <div class="hero-body">
+        <p>In what experts are calling "an unprecedented personal crisis," local man Gary Hutchins, 34, confirmed Tuesday that he had finished every show on Netflix and is now "just kind of sitting there."</p>
+        <p>Sources close to the situation report that Hutchins, who began his journey in March, made the discovery at approximately 11:47 PM when the streaming service's homepage loaded and he recognized every single thumbnail.</p>
+        <div class="pull-quote">"I've seen it all," Hutchins reportedly told his ceiling. "There is nothing left."</div>
+        <p>Psychiatrists suggest the condition, now being referred to as "Post-Scroll Void," may affect millions. Treatment options remain unclear, though several experts recommend "going outside," a suggestion Hutchins described as "too on the nose."</p>
+      </div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-sidebar">
+      <p class="section-label">Also in the news</p>
+      <div class="sidebar-story">
+        <h3>Man Holds Door For Person 40 Feet Away, Both Now Trapped In Nightmare</h3>
+        <p>The uncomfortable jog continues, sources say.</p>
+      </div>
+      <div class="sidebar-story">
+        <h3>Scientists Discover That The Snooze Button Does, In Fact, Not Help</h3>
+        <p>Findings published in the Journal of Obviously.</p>
+      </div>
+      <div class="sidebar-story">
+        <h3>Nation's Printers Collectively Decide Today Is Not The Day</h3>
+        <p>IT departments flooded with calls, tears.</p>
+      </div>
+      <div class="sidebar-story">
+        <h3>Local Dog Realizes Owner Is Coming Home Eight Minutes Early, Begins Preparing</h3>
+        <p>Tail wag systems fully operational.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ornament">&mdash; &bull; &mdash; &bull; &mdash;</div>
+
+  <div class="three-col">
+    <div class="col-story">
+      <p class="section-label">Technology</p>
+      <h3>Man Sends Email, Immediately Spots Typo</h3>
+      <p>In a tragedy that has played out millions of times throughout history, local accountant Derek Fogg, 41, sent a company-wide email Tuesday and spotted a typo in the subject line before his hand had even left the mouse.</p>
+    </div>
+    <div class="col-story">
+      <p class="section-label">Health</p>
+      <h3>Gym Membership Renewed For Fifth Year Running, Still Unused</h3>
+      <p>The membership, purchased each January with "this time I mean it" energy, sat dormant through all four seasons for the fifth consecutive year, sources confirmed. The gym's staff report they have "never once" seen the cardholder.</p>
+    </div>
+    <div class="col-story">
+      <p class="section-label">Weather</p>
+      <h3>Perfect Jacket Weather Expected; Nation Dresses Wrong Anyway</h3>
+      <p>Meteorologists predicted a high of 62°F — widely considered perfect jacket weather — but observers noted that half the population arrived in winter coats and half in t-shirts, with no jackets in sight whatsoever.</p>
+    </div>
+  </div>
+
+  <div class="opinion-strip">
+    <div class="opinion-strip-label">Opinion</div>
+    <div class="opinion-item">
+      <p class="author">Gerald Finch</p>
+      <h4>"We Need To Talk About People Who Microwave Fish In The Office"</h4>
+    </div>
+    <div class="opinion-item">
+      <p class="author">Sandra Wu</p>
+      <h4>"The Grocery Self-Checkout Machine Is Gaslighting Me And I Have Proof"</h4>
+    </div>
+    <div class="opinion-item">
+      <p class="author">Tom Brickley</p>
+      <h4>"I Replied 'You Too' When The Waiter Said Enjoy Your Meal And I Have Never Recovered"</h4>
+    </div>
+    <div class="opinion-item">
+      <p class="author">Dr. Priya Nair</p>
+      <h4>"My Autocorrect Has Begun To Feel Personal"</h4>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-title">The Daily Nonsense</div>
+  <p>
+    &copy; 2026 The Daily Nonsense Media Group, a subsidiary of Nothing Real Inc.<br>
+    All stories are fictional. Any resemblance to actual events is deeply concerning.<br>
+    Corrections policy: we do not make corrections. We make "narrative updates."
+  </p>
+</footer>
+
+</body>
+</html>
