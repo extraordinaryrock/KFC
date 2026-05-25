@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moderation Integrity Initiative™ — Official Authority</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06080b;--bg2:#0b0f14;--bg3:#111820;--bg4:#161e29;
+  --red:#d42b2b;--red2:#8b1919;--red-glow:rgba(212,43,43,0.12);
+  --amber:#c97a12;
+  --w:#eee8dc;--wm:rgba(238,232,220,0.55);--wf:rgba(238,232,220,0.07);
+  --bd:rgba(238,232,220,0.07);--bdr:rgba(212,43,43,0.25);
+  --mono:'JetBrains Mono',monospace;
+  --dis:'Bebas Neue',sans-serif;
+  --body:'Barlow',sans-serif;
+  --cond:'Barlow Condensed',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w);font-family:var(--body);font-weight:300;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--red2)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(6,8,11,.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
+.nav-logo{font-family:var(--dis);font-size:1.3rem;letter-spacing:.15em;display:flex;align-items:center;gap:10px}
+.nav-badge{background:var(--red);color:#fff;font-family:var(--mono);font-size:8px;padding:2px 7px;letter-spacing:.1em}
+.nav-links{display:flex;gap:1.6rem}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--wm);text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border:none;cursor:pointer;transition:background .2s}
+.nav-cta:hover{background:#ff3535}
+
+/* ── TICKER ── */
+.ticker{background:var(--red);padding:5px 0;overflow:hidden;margin-top:58px}
+.ticker-row{display:flex;gap:5rem;animation:tick 32s linear infinite;white-space:nowrap}
+.ticker-row span{font-family:var(--mono);font-size:10px;color:#fff;flex-shrink:0;letter-spacing:.07em}
+.ticker-row span::before{content:'⬤ ';font-size:7px;margin-right:5px}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SHARED ── */
+.sec{padding:5rem 2.5rem}
+.container{max-width:1100px;margin:0 auto}
+.label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--red);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:.9rem}
+.label::before{content:'';width:28px;height:1px;background:var(--red)}
+.stitle{font-family:var(--dis);font-size:clamp(2rem,4vw,3.2rem);letter-spacing:.04em;line-height:1;margin-bottom:.4rem}
+.ssub{font-size:13px;color:var(--wm);font-style:italic;margin-bottom:2.5rem;max-width:520px;line-height:1.65}
+.grid-rule{background:var(--bd)}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border:1px solid}
+.tag-red{border-color:var(--red);color:var(--red)}
+.tag-amber{border-color:var(--amber);color:var(--amber)}
+.tag-green{border-color:#2a7a3a;color:#4ecf6a}
+.tag-white{border-color:rgba(238,232,220,.3);color:var(--wm)}
+.glass{background:rgba(11,15,20,.7);backdrop-filter:blur(12px);border:1px solid var(--bd)}
+.btn-r{background:var(--red);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:12px 24px;border:none;cursor:pointer;transition:all .2s;display:inline-block}
+.btn-r:hover{background:#ff3535;transform:translateY(-1px)}
+.btn-g{background:transparent;color:var(--wm);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 24px;border:1px solid var(--bd);cursor:pointer;transition:all .2s;display:inline-block}
+.btn-g:hover{border-color:var(--red);color:var(--w)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes scanline{0%{top:-100%}100%{top:100%}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:6rem 2.5rem 4rem;overflow:hidden}
+.hero-grid-bg{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(238,232,220,.015) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(238,232,220,.015) 60px);z-index:0}
+.hero-red-glow{position:absolute;right:-10%;top:20%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,43,43,.08) 0%,transparent 70%);z-index:0;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.hero-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--red);text-transform:uppercase;margin-bottom:1.4rem;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--red)}
+.hero h1{font-family:var(--dis);font-size:clamp(3.8rem,9vw,7.5rem);line-height:.9;letter-spacing:.02em;margin-bottom:1.4rem}
+.hero h1 .r{color:var(--red)}
+.hero-body{font-size:14px;color:var(--wm);line-height:1.75;max-width:460px;margin-bottom:2.5rem}
+.hero-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.hstat-n{font-family:var(--dis);font-size:2.1rem;color:var(--red);line-height:1}
+.hstat-l{font-family:var(--mono);font-size:9px;color:var(--wm);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.colonel-card{position:absolute;right:2.5rem;top:50%;transform:translateY(-50%);z-index:1;width:280px}
+.col-frame{background:rgba(11,15,20,.85);backdrop-filter:blur(16px);border:1px solid var(--bdr);padding:1.8rem;position:relative}
+.col-frame::before{content:'CLASSIFIED';position:absolute;top:-9px;left:16px;background:var(--red);color:#fff;font-family:var(--mono);font-size:8px;padding:2px 8px;letter-spacing:.2em}
+.col-avi{width:100%;aspect-ratio:1;background:linear-gradient(160deg,#180808,#0b0f14);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:4.5rem;margin-bottom:1rem;position:relative;overflow:hidden}
+.col-avi::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(212,43,43,.03) 4px)}
+.col-scan{position:absolute;left:0;right:0;height:2px;background:rgba(212,43,43,.4);animation:scanline 3s linear infinite}
+.col-name{font-family:var(--dis);font-size:1.4rem;letter-spacing:.1em;margin-bottom:3px}
+.col-title{font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.9rem;line-height:1.5}
+.col-meta{font-family:var(--mono);font-size:9px;color:var(--wm);line-height:2.1}
+.col-meta span{color:var(--w)}
+.sdot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:5px;animation:pulse 1.5s ease-in-out infinite}
+
+/* ── ALERT FEED ── */
+.alerts-wrap{display:flex;flex-direction:column;gap:6px;margin-top:1.5rem}
+.alert-row{background:rgba(11,15,20,.75);backdrop-filter:blur(10px);border:1px solid var(--bd);border-left:2px solid var(--red);padding:.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;animation:fadeUp .4s ease both}
+.alert-row:nth-child(1){animation-delay:.05s}.alert-row:nth-child(2){animation-delay:.1s}.alert-row:nth-child(3){animation-delay:.15s}.alert-row:nth-child(4){animation-delay:.2s}.alert-row:nth-child(5){animation-delay:.25s}.alert-row:nth-child(6){animation-delay:.3s}.alert-row:nth-child(7){animation-delay:.35s}
+.alert-text{font-size:13px;color:var(--w);line-height:1.5}
+.alert-right{flex-shrink:0;margin-left:1.5rem;text-align:right;font-family:var(--mono);font-size:9px;color:var(--wm)}
+.alert-level{font-family:var(--mono);font-size:8px;letter-spacing:.1em;padding:2px 6px;margin-bottom:3px;display:block;text-align:right}
+.lv-c{background:var(--red);color:#fff}
+.lv-h{border:1px solid #c05000;color:#ff7733}
+.lv-m{border:1px solid #887700;color:#ffcc33}
+.lv-i{border:1px solid rgba(238,232,220,.2);color:var(--wm)}
+
+/* ── INCIDENT CARDS ── */
+.inc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--bd)}
+.inc-card{background:var(--bg2);padding:1.4rem;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.inc-card:hover{background:var(--bg3)}
+.inc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.inc-card:hover::after{transform:scaleX(1)}
+.inc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem}
+.inc-case{font-family:var(--mono);font-size:9px;color:var(--wm);letter-spacing:.1em}
+.inc-title{font-family:var(--cond);font-size:1.05rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.5rem}
+.inc-body{font-family:var(--mono);font-size:10px;color:var(--wm);line-height:1.65}
+.inc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--bd);font-family:var(--mono);font-size:9px;color:var(--wm)}
+.inc-foot .st{color:var(--red)}
+
+/* ── ANALYTICS ── */
+.analytics-sec{background:var(--bg2)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);margin-bottom:1px}
+.stat-cell{background:var(--bg);padding:2rem 1.5rem}
+.stat-n{font-family:var(--dis);font-size:clamp(2.5rem,4vw,3.8rem);color:var(--red);line-height:1;margin-bottom:.4rem}
+.stat-l{font-family:var(--mono);font-size:10px;color:var(--wm);letter-spacing:.1em;text-transform:uppercase;line-height:1.6}
+.stat-note{font-size:11px;font-style:italic;color:rgba(212,43,43,.65);margin-top:.3rem}
+.bar-wrap{background:var(--bg);padding:2rem;grid-column:span 2}
+.bar-t{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--wm);margin-bottom:1.2rem}
+.bar-row{display:flex;align-items:center;gap:.9rem;margin-bottom:.8rem}
+.bar-lbl{font-family:var(--mono);font-size:9px;color:var(--wm);width:155px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;height:18px;background:var(--bg3);overflow:hidden}
+.bar-fill{height:100%;background:var(--red);width:0;transition:width 1.6s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.bar-v{font-family:var(--mono);font-size:8px;color:#fff;white-space:nowrap}
+
+/* ── TEAM ── */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--bd);margin-top:2.5rem}
+.team-card{background:var(--bg2);padding:2rem;position:relative;overflow:hidden;transition:background .25s}
+.team-card:hover{background:var(--bg3)}
+.team-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.team-card:hover::before{transform:scaleX(1)}
+.team-avi{width:64px;height:64px;border-radius:50%;background:var(--bg3);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin-bottom:1rem;position:relative}
+.team-avi img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.rank-pip{position:absolute;bottom:0;right:0;width:16px;height:16px;background:var(--red);border-radius:50%;border:2px solid var(--bg2);display:flex;align-items:center;justify-content:center;font-size:8px}
+.t-name{font-family:var(--cond);font-size:1.15rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:3px}
+.t-role{font-family:var(--mono);font-size:8.5px;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.2rem;line-height:1.5}
+.t-tagline{font-size:11px;color:var(--wm);font-style:italic;margin-bottom:1.1rem;line-height:1.5}
+.t-specs{margin-bottom:1rem}
+.t-specs-head{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--wm);margin-bottom:.4rem}
+.t-spec-item{font-size:11px;color:rgba(238,232,220,.7);line-height:1.8;padding-left:.8rem;border-left:1px solid var(--bdr)}
+.t-spec-item::before{content:'▸ ';color:var(--red);font-size:9px}
+.t-achievements{margin-bottom:1rem}
+.t-ach-item{font-family:var(--mono);font-size:9.5px;color:var(--wm);line-height:1.9}
+.t-ach-item::before{content:'✓ ';color:var(--red)}
+.t-quote{background:rgba(212,43,43,.06);border-left:2px solid var(--red);padding:.7rem .9rem;font-size:12px;font-style:italic;color:var(--w);line-height:1.6;margin-top:1rem}
+.t-quote::before{content:'" ';color:var(--red)}
+.t-quote::after{content:' "';color:var(--red)}
+
+/* ── PHILOSOPHY ── */
+.phil-sec{background:var(--bg2)}
+.phil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--bd);margin-top:2rem}
+.phil-item{background:var(--bg);padding:1.5rem;border-top:2px solid var(--red)}
+.phil-n{font-family:var(--dis);font-size:2.5rem;color:var(--red);opacity:.3;line-height:1;margin-bottom:.5rem}
+.phil-text{font-size:13px;color:var(--w);line-height:1.65}
+
+/* ── APPEAL ── */
+.appeal-sec{background:var(--bg2)}
+.appeal-wrap{max-width:680px;margin:0 auto}
+.appeal-box{background:var(--bg);border:1px solid var(--bdr);padding:2.5rem;position:relative}
+.appeal-box::before{content:'LIVE PROCESSING';position:absolute;top:-9px;right:18px;background:var(--bg);color:var(--red);font-family:var(--mono);font-size:8px;padding:0 8px;letter-spacing:.2em}
+.fake-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);margin-bottom:2rem}
+.fake-stat{background:var(--bg3);padding:1rem;text-align:center}
+.fs-n{font-family:var(--dis);font-size:1.6rem;color:var(--red);line-height:1}
+.fs-l{font-family:var(--mono);font-size:8px;color:var(--wm);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.flabel{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--wm);display:block;margin-bottom:5px;margin-top:1.2rem}
+input,select,textarea{width:100%;background:var(--bg3);border:1px solid var(--bd);border-bottom:1px solid rgba(212,43,43,.4);color:var(--w);font-family:var(--mono);font-size:12px;padding:10px 12px;outline:none;transition:border-color .2s;appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--red)}
+textarea{resize:vertical;min-height:90px}
+select option{background:var(--bg3)}
+.proc-bar{background:var(--bg3);border:1px solid var(--bd);height:4px;margin:1.2rem 0;overflow:hidden;position:relative}
+.proc-fill{height:100%;background:var(--red);width:0;transition:width 3s linear}
+.proc-steps{font-family:var(--mono);font-size:10px;color:var(--red);display:none;min-height:1.5rem;margin-bottom:.5rem}
+.proc-steps span{animation:blink .8s ease-in-out infinite}
+.denial-box{display:none;margin-top:1.5rem;background:#0a0000;border:1px solid var(--red);padding:1.5rem;animation:fadeUp .3s ease}
+.denial-h{font-family:var(--dis);font-size:2.2rem;color:var(--red);letter-spacing:.1em;margin-bottom:.3rem}
+.denial-case{font-family:var(--mono);font-size:9px;color:var(--wm);letter-spacing:.1em;margin-bottom:.9rem}
+.denial-reason{font-size:13px;color:var(--w);font-style:italic;line-height:1.65;padding:.9rem;background:rgba(212,43,43,.05);border-left:2px solid var(--red);margin-bottom:.9rem}
+.denial-status{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--red);text-transform:uppercase;margin-bottom:.5rem}
+.denial-sig{font-family:var(--mono);font-size:9px;color:var(--wm);letter-spacing:.06em}
+
+/* ── REPORT ── */
+.report-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bd);margin-top:2rem}
+.report-form-col{background:var(--bg2);padding:2rem}
+.report-log-col{background:var(--bg2);padding:2rem}
+.threat-meter{display:grid;grid-template-columns:1fr;gap:4px;margin-top:1.5rem}
+.threat-level{padding:.6rem 1rem;border:1px solid var(--bd);font-family:var(--mono);font-size:10px;letter-spacing:.08em;opacity:.4;transition:all .3s;cursor:default;display:flex;justify-content:space-between}
+.threat-level.active{opacity:1;border-color:var(--red);background:rgba(212,43,43,.08)}
+.tl1.active{border-color:#446644;background:rgba(68,102,68,.1);color:#4ecf6a}
+.tl2.active{border-color:#886600;background:rgba(136,102,0,.1);color:#ffcc33}
+.tl3.active{border-color:#cc5500;background:rgba(204,85,0,.1);color:#ff8833}
+.tl4.active{border-color:var(--red);background:var(--red-glow);color:#ff4444}
+.tl5.active{border-color:var(--red);background:rgba(212,43,43,.2);color:#fff;animation:pulse .8s ease-in-out infinite}
+.report-log{margin-top:1.2rem;display:flex;flex-direction:column;gap:5px;min-height:200px}
+.log-entry{font-family:var(--mono);font-size:10px;color:var(--wm);padding:.4rem .6rem;background:var(--bg3);border-left:1px solid var(--bdr);animation:fadeUp .3s ease both;line-height:1.5}
+.incident-banner{display:none;text-align:center;padding:1.5rem;border:1px solid var(--red);background:rgba(212,43,43,.06);margin-top:1rem;animation:fadeUp .3s ease}
+.incident-banner .ib-head{font-family:var(--dis);font-size:2rem;color:var(--red);letter-spacing:.1em;margin-bottom:.3rem}
+.incident-banner .ib-sub{font-family:var(--mono);font-size:10px;color:var(--wm);letter-spacing:.1em;line-height:1.8}
+
+/* ── MEDIA ── */
+.media-sec{background:var(--bg)}
+.media-tabs{display:flex;gap:0;border-bottom:1px solid var(--bd);margin-bottom:2rem;flex-wrap:wrap}
+.mtab{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:10px 20px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--wm);cursor:pointer;transition:all .2s;margin-bottom:-1px}
+.mtab.active,.mtab:hover{color:var(--w);border-bottom-color:var(--red)}
+.media-panel{display:none}.media-panel.active{display:block;animation:fadeUp .3s ease}
+.contradiction-grid,.exploit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--bd)}
+.contra-card,.exploit-card{background:var(--bg2);padding:1.4rem}
+.contra-card:hover,.exploit-card:hover{background:var(--bg3)}
+.contra-head{font-family:var(--cond);font-size:.95rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.4rem}
+.contra-body{font-size:12px;color:var(--wm);line-height:1.65}
+.redacted{background:rgba(238,232,220,.9);color:rgba(238,232,220,.9);border-radius:2px;padding:0 4px;cursor:not-allowed;user-select:none;transition:all .2s}
+.redacted:hover{background:var(--bg3);color:var(--w)}
+.transcript-box{background:var(--bg2);border:1px solid var(--bd);padding:1.5rem;font-family:var(--mono);font-size:11px;line-height:2;margin-bottom:1px}
+.ts-header{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--bd)}
+.msg{margin-bottom:.3rem;padding:.4rem .6rem;border-left:1px solid var(--bd)}
+.msg .who{color:var(--red);margin-right:.5rem}
+.msg.mod{border-left-color:var(--red);background:rgba(212,43,43,.03)}
+.exploit-card .ec-num{font-family:var(--mono);font-size:9px;color:var(--wm);margin-bottom:.4rem}
+.exploit-card .ec-title{font-family:var(--cond);font-size:.95rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
+.exploit-card .ec-status{font-family:var(--mono);font-size:9px;letter-spacing:.1em;padding:2px 7px;display:inline-block;margin-bottom:.5rem}
+.ec-ignored{border:1px solid var(--red);color:var(--red)}
+.ec-pending{border:1px solid var(--amber);color:var(--amber)}
+.exploit-card .ec-note{font-size:11px;color:var(--wm);font-style:italic}
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:1.5rem;border-left:1px solid var(--bdr);padding-left:1.5rem;margin-left:1rem}
+.tl-item{position:relative;padding-bottom:2rem}
+.tl-dot{position:absolute;left:-1.9rem;top:4px;width:9px;height:9px;border-radius:50%;background:var(--red);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--red)}
+.tl-time{font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:.1em;margin-bottom:3px;text-transform:uppercase}
+.tl-head{font-family:var(--cond);font-size:1rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+.tl-body{font-size:12px;color:var(--wm);line-height:1.6}
+.dmg-chart{margin-top:1.5rem}
+.dmg-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.9rem}
+.dmg-lbl{font-family:var(--mono);font-size:9px;color:var(--wm);width:200px;flex-shrink:0;text-align:right}
+.dmg-track{flex:1;height:22px;background:var(--bg3);overflow:hidden}
+.dmg-fill{height:100%;background:linear-gradient(90deg,var(--red2),var(--red));width:0;transition:width 1.6s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:flex-end;padding-right:7px}
+.dmg-v{font-family:var(--mono);font-size:8px;color:#fff;white-space:nowrap}
+
+/* ── STATUS DASHBOARD ── */
+.status-dash{background:var(--bg2);border:1px solid var(--bd);padding:1.5rem;margin-bottom:2rem}
+.status-dash-head{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--wm);text-transform:uppercase;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center}
+.status-live{color:var(--red);display:flex;align-items:center;gap:5px}
+.status-live::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse 1.2s ease-in-out infinite}
+.staff-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--bd)}
+.ss-item{background:var(--bg3);padding:1rem 1.2rem;display:flex;gap:.9rem;align-items:center}
+.ss-avi{width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ss-avi img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.ss-name{font-family:var(--cond);font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.ss-state{font-family:var(--mono);font-size:9px;color:var(--wm);margin-top:2px}
+.ss-state .dot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:4px}
+.online{background:#2ecc60}.away{background:var(--amber)}.dnd{background:var(--red)}
+.ego-meter{margin-top:1rem}
+.ego-label{font-family:var(--mono);font-size:9px;color:var(--wm);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;display:flex;justify-content:space-between}
+.ego-track{height:8px;background:var(--bg3);border:1px solid var(--bd);overflow:hidden}
+.ego-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--red));transition:width 2s ease}
+
+/* ── LEADERBOARD ── */
+.lb-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:1.5rem}
+.lb-table th{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--w);background:var(--bg3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd)}
+.lb-table td{padding:10px 12px;border-bottom:1px solid var(--bd);vertical-align:top}
+.lb-table tr:hover td{background:var(--bg3)}
+.lb-rank{font-family:var(--dis);font-size:1.2rem;color:var(--red)}
+.lb-name{font-family:var(--cond);font-weight:600;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase}
+.lb-num{font-family:var(--mono);font-size:11px;color:var(--wm)}
+
+/* ── FOOTER ── */
+footer{background:var(--bg);border-top:1px solid var(--bd);padding:3rem 2.5rem}
+.ft-inner{max-width:1100px;margin:0 auto}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--bd)}
+.ft-logo{font-family:var(--dis);font-size:1.8rem;letter-spacing:.15em;margin-bottom:.4rem}
+.ft-tagline{font-size:12px;color:var(--wm);font-style:italic;max-width:380px;line-height:1.65}
+.ft-links{display:flex;flex-direction:column;gap:.5rem}
+.ft-links a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--wm);transition:color .2s}
+.ft-links a:hover{color:var(--red)}
+.ft-bottom{text-align:center}
+.ft-copy{font-family:var(--mono);font-size:9px;color:rgba(238,232,220,.25);letter-spacing:.06em;line-height:2.2}
+.ft-lex{font-family:var(--dis);font-size:1.5rem;color:var(--wm);letter-spacing:.15em;margin-bottom:.3rem;opacity:.7}
+
+/* ── SCANNER POPUP ── */
+.scanner{position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;width:260px;background:rgba(6,8,11,.95);backdrop-filter:blur(20px);border:1px solid var(--bdr);padding:1rem 1.2rem;display:none;animation:fadeUp .3s ease}
+.scanner-head{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:center}
+.scanner-close{cursor:pointer;color:var(--wm);font-size:14px;line-height:1}
+.scanner-msg{font-family:var(--mono);font-size:10px;color:var(--wm);line-height:1.6}
+.scanner-bar{height:3px;background:var(--bg3);margin-top:.8rem;overflow:hidden}
+.scanner-prog{height:100%;background:var(--red);animation:scan 4s linear forwards}
+@keyframes scan{0%{width:0}100%{width:100%}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:.8rem 1.2rem}
+  .nav-links{display:none}
+  .hero{padding:5rem 1.2rem 3rem}
+  .colonel-card{display:none}
+  .sec{padding:3.5rem 1.2rem}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .bar-wrap{grid-column:span 1}
+  footer{padding:2rem 1.2rem}
+  .report-wrap{grid-template-columns:1fr}
+  .ft-top{flex-direction:column}
+}
+@media(max-width:600px){
+  .stats-row{grid-template-columns:1fr}
+  .hero-stats{gap:1.2rem}
+  .media-tabs{overflow-x:auto}
+  .staff-status-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SCANNER POPUP -->
+<div class="scanner" id="scanner">
+  <div class="scanner-head">AI Threat Scanner <span class="scanner-close" onclick="document.getElementById('scanner').style.display='none'">✕</span></div>
+  <div class="scanner-msg" id="scanner-msg">Initializing scan…</div>
+  <div class="scanner-bar"><div class="scanner-prog"></div></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MII™ <span class="nav-badge">OFFICIAL</span></div>
+  <div class="nav-links">
+    <a href="#team">Team</a>
+    <a href="#incidents">Incidents</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#media">Evidence</a>
+    <a href="#report">Report</a>
+    <a href="#appeal">Appeal</a>
+  </div>
+  <button class="nav-cta" onclick="triggerScanner()">🔴 Threat Scan</button>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-row">
+    <span>WARNING: User expressed happiness</span>
+    <span>ALERT: Compliment detected in #general</span>
+    <span>HIGH RISK: Someone used 🐒</span>
+    <span>MODERATOR MORALE: UNSTABLE</span>
+    <span>Appeal #4421 denied — "too confident"</span>
+    <span>Col. Luke: Day 14 without logging off</span>
+    <span>UNAUTHORIZED FUN DETECTED</span>
+    <span>Grass touch rate: 0.00%</span>
+    <span>EXPLOIT REPORTS: IGNORED SUCCESSFULLY</span>
+    <span>Staff currently discussing you behind closed channels</span>
+    <span>WARNING: User expressed happiness</span>
+    <span>ALERT: Compliment detected in #general</span>
+    <span>HIGH RISK: Someone used 🐒</span>
+    <span>MODERATOR MORALE: UNSTABLE</span>
+    <span>Appeal #4421 denied — "too confident"</span>
+    <span>Col. Luke: Day 14 without logging off</span>
+    <span>UNAUTHORIZED FUN DETECTED</span>
+    <span>Grass touch rate: 0.00%</span>
+    <span>EXPLOIT REPORTS: IGNORED SUCCESSFULLY</span>
+    <span>Staff currently discussing you behind closed channels</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-red-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Moderation Integrity Initiative™ — Est. 2025</div>
+    <h1>PROFESSIONAL<br>EMOTIONAL<br><span class="r">ENFORCEMENT</span></h1>
+    <p class="hero-body">Protecting servers from compliments, unauthorized laughter, and suspiciously confident behavior. Because saying "cute" is a serious offense and somebody has to do something about it.</p>
+    <div class="hero-stats">
+      <div><div class="hstat-n">4,891</div><div class="hstat-l">Emotional Bans<br>Issued</div></div>
+      <div><div class="hstat-n">0.2s</div><div class="hstat-l">Avg. Mute<br>Response</div></div>
+      <div><div class="hstat-n">0%</div><div class="hstat-l">Grass Touch<br>Rate</div></div>
+      <div><div class="hstat-n">∞</div><div class="hstat-l">Paragraphs Written<br>Over One-Word Jokes</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#appeal" class="btn-r">Appeal Your Emoji Crime</a>
+      <a href="#incidents" class="btn-g">View Active Investigations</a>
+    </div>
+  </div>
+  <div class="colonel-card">
+    <div class="col-frame">
+      <div class="col-avi">🍗<div class="col-scan"></div></div>
+      <div class="col-name">Col. Luke</div>
+      <div class="col-title">Supreme Commander<br>Chief Emotional Officer</div>
+      <div class="col-meta">
+        <div><span class="sdot"></span><span>STATUS:</span> Actively monitoring</div>
+        <div>THREAT LEVEL: <span style="color:var(--red)">MAXIMUM</span></div>
+        <div>MOOD: <span>Professionally upset</span></div>
+        <div>EVIDENCE: <span>Fried chicken</span></div>
+        <div>DAYS OFFLINE: <span>0</span></div>
+        <div>AGE ACTED: <span style="color:var(--red)">Below 20</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE STATUS -->
+<section class="sec" style="padding-top:3rem;padding-bottom:3rem;background:var(--bg2)">
+  <div class="container">
+    <div class="status-dash">
+      <div class="status-dash-head">
+        <span>Live Staff Status — Moderation Operations Center</span>
+        <span class="status-live">Live</span>
+      </div>
+      <div class="staff-status-grid">
+        <div class="ss-item">
+          <div class="ss-avi">🍗</div>
+          <div>
+            <div class="ss-name">Colonel Luke</div>
+            <div class="ss-state"><span class="dot dnd"></span>Do Not Disturb — Monitoring</div>
+            <div class="ego-meter"><div class="ego-label"><span>Ego Stability</span><span>CRITICAL</span></div><div class="ego-track"><div class="ego-fill" style="width:97%"></div></div></div>
+          </div>
+        </div>
+        <div class="ss-item">
+          <div class="ss-avi">🛡️</div>
+          <div>
+            <div class="ss-name">Fund</div>
+            <div class="ss-state"><span class="dot online"></span>Online — Defending Unconditionally</div>
+            <div class="ego-meter"><div class="ego-label"><span>Ego Stability</span><span>HIGH</span></div><div class="ego-track"><div class="ego-fill" style="width:81%"></div></div></div>
+          </div>
+        </div>
+        <div class="ss-item">
+          <div class="ss-avi">👁️</div>
+          <div>
+            <div class="ss-name">Life</div>
+            <div class="ss-state"><span class="dot dnd"></span>Online — Hall Monitoring Active</div>
+            <div class="ego-meter"><div class="ego-label"><span>Ego Stability</span><span>VOLATILE</span></div><div class="ego-track"><div class="ego-fill" style="width:89%"></div></div></div>
+          </div>
+        </div>
+        <div class="ss-item">
+          <div class="ss-avi">😐</div>
+          <div>
+            <div class="ss-name">Agent Davis</div>
+            <div class="ss-state"><span class="dot away"></span>Away — Emoji Risk Assessment</div>
+            <div class="ego-meter"><div class="ego-label"><span>Ego Stability</span><span>STABLE</span></div><div class="ego-track"><div class="ego-fill" style="width:65%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sec" id="team">
+  <div class="container">
+    <div class="label">Personnel Files</div>
+    <div class="stitle">Meet The Team</div>
+    <p class="ssub">Highly trained professionals. Emotionally unstable individuals. These are the same people.</p>
+    <div class="team-grid">
+
+      <!-- COLONEL LUKE -->
+      <div class="team-card">
+        <div class="team-avi">🍗<div class="rank-pip">★</div></div>
+        <div class="t-name">Colonel Luke</div>
+        <div class="t-role">Chief Emotional Enforcement Officer<br>Supreme Commander</div>
+        <div class="t-tagline">Crybaby. Act your age, turning 20.</div>
+        <div class="t-specs">
+          <div class="t-specs-head">Specialties</div>
+          <div class="t-spec-item">Escalating harmless interactions into classified incidents</div>
+          <div class="t-spec-item">Emergency emoji response protocols</div>
+          <div class="t-spec-item">High-level compliment suppression</div>
+          <div class="t-spec-item">Detecting "disrespectful vibes" within milliseconds</div>
+        </div>
+        <div class="t-achievements">
+          <div class="t-ach-item">Turning casual conversations into federal investigations</div>
+          <div class="t-ach-item">Writing paragraphs over one-word jokes</div>
+          <div class="t-ach-item">Taking indirect comments personally with record efficiency</div>
+          <div class="t-ach-item">Timing users out faster than exploit reports can be reviewed</div>
+        </div>
+        <div class="t-quote">This server takes professionalism very seriously.</div>
+      </div>
+
+      <!-- FUND -->
+      <div class="team-card">
+        <div class="team-avi">🛡️<div class="rank-pip">2</div></div>
+        <div class="t-name">Fund</div>
+        <div class="t-role">Deputy Director of Damage Control<br>OG Sigma Alpha Gooner</div>
+        <div class="t-tagline">Professionally uninvited to every conversation he appears in.</div>
+        <div class="t-specs">
+          <div class="t-specs-head">Specialties</div>
+          <div class="t-spec-item">Appearing in conversations nobody invited him into</div>
+          <div class="t-spec-item">Defending staff decisions with blind corporate loyalty</div>
+          <div class="t-spec-item">Translating jokes into HR violations</div>
+          <div class="t-spec-item">Treating every disagreement like a courtroom case</div>
+        </div>
+        <div class="t-achievements">
+          <div class="t-ach-item">Successfully escalated 14 non-issues into staff discussions</div>
+          <div class="t-ach-item">Earned Platinum Tier in Conversation Hijacking</div>
+          <div class="t-ach-item">Recognized for "Replying To Things That Weren't About Him"</div>
+        </div>
+        <div class="t-quote">We investigated ourselves and found no wrongdoing.</div>
+      </div>
+
+      <!-- LIFE -->
+      <div class="team-card">
+        <div class="team-avi">👁️<div class="rank-pip">3</div></div>
+        <div class="t-name">Life</div>
+        <div class="t-role">Senior Conversation Surveillance Analyst<br>22-Year-Old Fat Jobless Veteran Mod</div>
+        <div class="t-tagline">Dedicated to around-the-clock online operations. Literally.</div>
+        <div class="t-specs">
+          <div class="t-specs-head">Specialties</div>
+          <div class="t-spec-item">Monitoring conversations until unreasonable hours</div>
+          <div class="t-spec-item">Translating obvious jokes into policy concerns</div>
+          <div class="t-spec-item">Entering unrelated discussions with maximum confidence</div>
+          <div class="t-spec-item">Converting mild sarcasm into "community threats"</div>
+        </div>
+        <div class="t-achievements">
+          <div class="t-ach-item">Logged thousands of hours in Digital Hall Monitoring</div>
+          <div class="t-ach-item">Holds world record for taking things personally</div>
+          <div class="t-ach-item">Awarded "Most Likely To Turn A Joke Into A Paragraph"</div>
+        </div>
+        <div class="t-quote">Context is subjective. Moderator feelings are forever.</div>
+      </div>
+
+      <!-- AGENT DAVIS -->
+      <div class="team-card">
+        <div class="team-avi">😐</div>
+        <div class="t-name">Agent Davis</div>
+        <div class="t-role">Chief Emoji Enforcement Officer<br>Senior Reaction Suppression Analyst</div>
+        <div class="t-tagline">Compiled an 88-page risk manual on 🙂 alone.</div>
+        <div class="t-specs">
+          <div class="t-specs-head">Specialties</div>
+          <div class="t-spec-item">Emoji threat classification (all 3,633 reviewed)</div>
+          <div class="t-spec-item">Passive-aggressive reaction detection</div>
+          <div class="t-spec-item">Requested 😊 be classified illegal</div>
+        </div>
+        <div class="t-achievements">
+          <div class="t-ach-item">Banned 600 users over emojis specifically</div>
+          <div class="t-ach-item">Classified 🙂 as high-risk passive aggression</div>
+          <div class="t-ach-item">Has personally never used an emoji</div>
+        </div>
+        <div class="t-quote">Emoji usage is a window into character. And I don't like what I see.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="sec phil-sec" id="philosophy">
+  <div class="container">
+    <div class="label">Core Doctrine</div>
+    <div class="stitle">Staff Philosophy</div>
+    <p class="ssub">At The Moderation Integrity Initiative™, our team operates on a set of deeply held convictions.</p>
+    <div class="phil-grid">
+      <div class="phil-item"><div class="phil-n">01</div><div class="phil-text">Every harmless interaction deserves full scrutiny and a multi-paragraph response.</div></div>
+      <div class="phil-item"><div class="phil-n">02</div><div class="phil-text">Selective enforcement builds character. Mostly in the users being selectively enforced against.</div></div>
+      <div class="phil-item"><div class="phil-n">03</div><div class="phil-text">Rules work best when interpreted differently every single day depending on who's asking.</div></div>
+      <div class="phil-item"><div class="phil-n">04</div><div class="phil-text">Public confidence is suspicious behavior requiring immediate investigation.</div></div>
+      <div class="phil-item"><div class="phil-n">05</div><div class="phil-text">Moderator intervention should always remain disproportionate, dramatic, and deeply personal.</div></div>
+      <div class="phil-item"><div class="phil-n">06</div><div class="phil-text">Exploit reports are optional. Emoji violations are not. Priorities must be clear.</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--wm);font-style:italic;margin-top:1.5rem;text-align:center">Together, our staff continues pushing the boundaries of unnecessary escalation, ensuring no lighthearted interaction survives unreviewed.</p>
+  </div>
+</section>
+
+<!-- INCIDENTS -->
+<section class="sec" id="incidents" style="background:var(--bg2)">
+  <div class="container">
+    <div class="label">Active Cases</div>
+    <div class="stitle">Incident Response Center</div>
+    <p class="ssub">All cases handled with gravity and due process they do not deserve.</p>
+    <div class="inc-grid">
+      <div class="inc-card">
+        <div class="inc-head"><span class="inc-case">CASE #4421</span><span class="tag tag-red">CRITICAL</span></div>
+        <div class="inc-title">User Said "Cute"</div>
+        <div class="inc-body">Perpetrator deployed unsolicited compliment in #general. Target was a moderator's profile picture. Recipient became visibly flustered. 3 appeals denied. Investigation ongoing after 6 days.</div>
+        <div class="inc-foot"><span>ACTION: Permanent Emotional Damage</span><span class="st">UNRESOLVED</span></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-head"><span class="inc-case">CASE #4398</span><span class="tag tag-amber">HIGH</span></div>
+        <div class="inc-title">Unauthorized Friendliness</div>
+        <div class="inc-body">New member greeted server with "hope everyone's having a great day :)". Tone assessed as suspiciously positive. Background check initiated. Smiley face formally flagged as passive-aggressive.</div>
+        <div class="inc-foot"><span>ACTION: 7-day isolation</span><span class="st">PROCESSING</span></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-head"><span class="inc-case">CASE #4390</span><span class="tag tag-red">CRITICAL</span></div>
+        <div class="inc-title">Deployment of 🐒 Emoji</div>
+        <div class="inc-body">Subject deployed monkey emoji in context that remains unclear after 6 days of analysis. Meaning could not be confirmed as neutral. User pre-emptively banned pending philosophical review by the Council.</div>
+        <div class="inc-foot"><span>ACTION: Pre-emptive permaban</span><span class="st">CLOSED</span></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-head"><span class="inc-case">CASE #4377</span><span class="tag tag-amber">HIGH</span></div>
+        <div class="inc-title">Laughing at Colonel Luke Post</div>
+        <div class="inc-body">User responded with "LMAO" to a message Colonel Luke posted seriously. Subject claims they were laughing at something else. Unverifiable. Treated as direct personal attack on staff dignity.</div>
+        <div class="inc-foot"><span>ACTION: Formal warning issued</span><span class="st">UNDER REVIEW</span></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-head"><span class="inc-case">CASE #4312</span><span class="tag tag-amber">HIGH</span></div>
+        <div class="inc-title">Coordinated Good Morning Campaign</div>
+        <div class="inc-body">User posted "good morning everyone" at 8AM for 14 consecutive days. Consistency deemed aggressive. Pattern suggests coordinated emotional manipulation. Evidence preserved by Life.</div>
+        <div class="inc-foot"><span>ACTION: Silence enforced</span><span class="st">ESCALATED</span></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-head"><span class="inc-case">CASE #4289</span><span class="tag tag-white">MEDIUM</span></div>
+        <div class="inc-title">Double Exclamation Mark</div>
+        <div class="inc-body">User ended sentence with two exclamation marks. Assessed as disproportionate enthusiasm. First offense. Given single warning. Second occurrence will result in tribunal. Fund is reviewing punctuation policy.</div>
+        <div class="inc-foot"><span>ACTION: Verbal warning</span><span class="st">MONITORING</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+<section class="sec analytics-sec" id="analytics">
+  <div class="container">
+    <div class="label">Live Dashboard</div>
+    <div class="stitle">Moderator Analytics</div>
+    <p class="ssub">Real-time performance metrics. All data collected without the subjects' knowledge or consent.</p>
+    <div class="stats-row">
+      <div class="stat-cell"><div class="stat-n">98.67%</div><div class="stat-l">Bans issued emotionally</div><div class="stat-note">Remaining 1.33% under review</div></div>
+      <div class="stat-cell"><div class="stat-n">0.2s</div><div class="stat-l">Avg. mute response</div><div class="stat-note">Personal best: 0.07s Monday</div></div>
+      <div class="stat-cell"><div class="stat-n">14h</div><div class="stat-l">Daily monitoring hours</div><div class="stat-note">Down from 16h. "Vacation."</div></div>
+      <div class="stat-cell"><div class="stat-n">0%</div><div class="stat-l">Grass touch rate</div><div class="stat-note">Consistent. Impressive.</div></div>
+    </div>
+    <div class="stats-row" style="margin-top:1px">
+      <div class="stat-cell"><div class="stat-n">4,891</div><div class="stat-l">Total emotional bans</div><div class="stat-note">97% attributed to Colonel Luke</div></div>
+      <div class="stat-cell"><div class="stat-n">14</div><div class="stat-l">Non-issues escalated<br>(by Fund, this week)</div><div class="stat-note">Into staff discussions</div></div>
+      <div class="stat-cell"><div class="stat-n">1,204</div><div class="stat-l">Suspicious cases flagged<br>(by Torres)</div><div class="stat-note">0 confirmed. 1,204 suspected.</div></div>
+      <div class="stat-cell"><div class="stat-n">312</div><div class="stat-l">Jokes suppressed<br>by Director Chen</div><div class="stat-note">#memes closed twice</div></div>
+    </div>
+    <div style="background:var(--bg);padding:2rem;margin-top:1px">
+      <div class="bar-t">Ban Reason Distribution — Current Quarter</div>
+      <div class="bar-row"><div class="bar-lbl">Emoji misuse</div><div class="bar-track"><div class="bar-fill" data-w="87"><span class="bar-v">87%</span></div></div></div>
+      <div class="bar-row"><div class="bar-lbl">Being too nice</div><div class="bar-track"><div class="bar-fill" data-w="73"><span class="bar-v">73%</span></div></div></div>
+      <div class="bar-row"><div class="bar-lbl">Laughing at wrong time</div><div class="bar-track"><div class="bar-fill" data-w="61"><span class="bar-v">61%</span></div></div></div>
+      <div class="bar-row"><div class="bar-lbl">Winning argument vs staff</div><div class="bar-track"><div class="bar-fill" data-w="55"><span class="bar-v">55%</span></div></div></div>
+      <div class="bar-row"><div class="bar-lbl">Having a social life</div><div class="bar-track"><div class="bar-fill" data-w="44"><span class="bar-v">44%</span></div></div></div>
+      <div class="bar-row"><div class="bar-lbl">Reasons not stated</div><div class="bar-track"><div class="bar-fill" data-w="98"><span class="bar-v">98%</span></div></div></div>
+    </div>
+    <!-- Leaderboard -->
+    <div style="margin-top:2rem">
+      <div class="label">Performance Rankings</div>
+      <div class="stitle" style="font-size:1.8rem;margin-bottom:1.5rem">Moderator Leaderboard</div>
+      <table class="lb-table">
+        <thead><tr><th>#</th><th>Name</th><th>Bans</th><th>Overreactions</th><th>Non-Issues Escalated</th><th>Grass Touch Rate</th><th>Rating</th></tr></thead>
+        <tbody>
+          <tr><td class="lb-rank">1</td><td class="lb-name">Colonel Luke</td><td class="lb-num">4,891</td><td class="lb-num">4,891 (100%)</td><td class="lb-num">Immeasurable</td><td class="lb-num" style="color:var(--red)">0.00%</td><td><span class="tag tag-red">LEGEND</span></td></tr>
+          <tr><td class="lb-rank">2</td><td class="lb-name">Life</td><td class="lb-num">388</td><td class="lb-num">High (est.)</td><td class="lb-num">Thousands of hours logged</td><td class="lb-num" style="color:var(--red)">0.00%</td><td><span class="tag tag-amber">VETERAN</span></td></tr>
+          <tr><td class="lb-rank">3</td><td class="lb-name">Fund</td><td class="lb-num">41</td><td class="lb-num">Platinum tier</td><td class="lb-num">14 (this week)</td><td class="lb-num">Unknown</td><td><span class="tag tag-white">CORPORATE</span></td></tr>
+          <tr><td class="lb-rank">4</td><td class="lb-name">Agent Davis</td><td class="lb-num">600</td><td class="lb-num">Moderate–high</td><td class="lb-num">Emoji-related only</td><td class="lb-num" style="color:var(--red)">0.00%</td><td><span class="tag tag-white">SPECIALIST</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section class="sec media-sec" id="media">
+  <div class="container">
+    <div class="label">Transparency & Evidence Center</div>
+    <div class="stitle">Media Archive</div>
+    <p class="ssub">A comprehensive investigative archive. Conspiracy-documentary energy. Corporate aesthetic.</p>
+    <div class="media-tabs">
+      <button class="mtab active" onclick="switchTab('contradictions',this)">Contradiction Archive</button>
+      <button class="mtab" onclick="switchTab('transcripts',this)">Behind Closed Channels</button>
+      <button class="mtab" onclick="switchTab('exploits',this)">Exploit Graveyard</button>
+      <button class="mtab" onclick="switchTab('damage',this)">Damage Analytics</button>
+      <button class="mtab" onclick="switchTab('timeline',this)">Timeline of Events</button>
+    </div>
+
+    <!-- CONTRADICTIONS -->
+    <div class="media-panel active" id="tab-contradictions">
+      <div class="contradiction-grid">
+        <div class="contra-card">
+          <div class="contra-head">The Self-Investigation Protocol</div>
+          <div class="contra-body">Staff investigated a complaint about a staff member. Concluded no wrongdoing. The investigator was the staff member. This is called <span class="redacted" title="hover to reveal">due process</span>.</div>
+        </div>
+        <div class="contra-card">
+          <div class="contra-head">The Selective Enforcement Exception</div>
+          <div class="contra-body">Rule 4.2: "No personal attacks." Applied to users. Not applied when <span class="redacted">Colonel Luke</span> responds to ban appeals personally. Context-dependent, apparently.</div>
+        </div>
+        <div class="contra-card">
+          <div class="contra-head">The Shifting Definition of "Joke"</div>
+          <div class="contra-body">When staff says it: a joke. When users say it: a <span class="redacted">community threat</span> requiring formal documentation and a five-paragraph response from Fund.</div>
+        </div>
+        <div class="contra-card">
+          <div class="contra-head">The Confidence Paradox</div>
+          <div class="contra-body">Appeals denied for being "too confident." Appeals also denied for being "insufficiently respectful." The correct appeal tone has never been defined. This is by design.</div>
+        </div>
+        <div class="contra-card">
+          <div class="contra-head">The Evidence Standard</div>
+          <div class="contra-body">Exploit reports: require screenshots, timestamps, video evidence, and a notarized statement. Banning someone over emoji: <span class="redacted">vibes</span>.</div>
+        </div>
+        <div class="contra-card">
+          <div class="contra-head">The Timing Anomaly</div>
+          <div class="contra-body">Exploit reports from March: still pending. Emoji complaint filed Tuesday at 2AM: resolved by 2:03AM. Life was awake. Life is always awake.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSCRIPTS -->
+    <div class="media-panel" id="tab-transcripts">
+      <div class="transcript-box">
+        <div class="ts-header">STAFF CHANNEL LOG — #mod-only — [REDACTED DATE] — LEAKED</div>
+        <div class="msg mod"><span class="who">Col. Luke:</span>did you see what they said in general</div>
+        <div class="msg mod"><span class="who">Life:</span>yes. been monitoring since 3am</div>
+        <div class="msg mod"><span class="who">Fund:</span>I think we need to treat this as a formal incident</div>
+        <div class="msg mod"><span class="who">Col. Luke:</span>agreed. drafting response now. 4 paragraphs minimum</div>
+        <div class="msg mod"><span class="who">Life:</span>should i bring up the emoji from last week as well</div>
+        <div class="msg mod"><span class="who">Fund:</span>yes. pattern of behavior. very important to establish pattern</div>
+        <div class="msg mod"><span class="who">Col. Luke:</span>this is why we have a team. nobody else would catch this</div>
+        <div class="msg mod"><span class="who">Life:</span>nobody else is online at 4am to catch this</div>
+        <div class="msg mod"><span class="who">Col. Luke:</span>exactly. professionalism.</div>
+      </div>
+      <div class="transcript-box" style="margin-top:1px">
+        <div class="ts-header">EMERGENCY STAFF MEETING — VOICE CHANNEL — TRANSCRIBED</div>
+        <div class="msg mod"><span class="who">Col. Luke:</span>someone said "cute" in general. I've called this meeting.</div>
+        <div class="msg mod"><span class="who">Fund:</span>this is a clear violation of the tone guidelines</div>
+        <div class="msg mod"><span class="who">Life:</span>I have the logs. I have everything.</div>
+        <div class="msg mod"><span class="who">Col. Luke:</span>we need to send a message. the server needs to know we're serious</div>
+        <div class="msg mod"><span class="who">Fund:</span>I'll draft the official statement</div>
+        <div class="msg mod"><span class="who">Life:</span>should be at least 800 words</div>
+        <div class="msg mod"><span class="who">Col. Luke:</span>minimum. also we're updating the rules after this</div>
+        <div class="msg mod"><span class="who">Fund:</span>agreed. retroactively.</div>
+      </div>
+    </div>
+
+    <!-- EXPLOITS -->
+    <div class="media-panel" id="tab-exploits">
+      <p style="font-size:13px;color:var(--wm);font-style:italic;margin-bottom:1.5rem">The Exploit Report Graveyard. Filed with evidence. Closed without comment. Meanwhile:</p>
+      <div class="exploit-grid">
+        <div class="exploit-card"><div class="ec-num">REPORT #817</div><div class="ec-title">Exploit Report — Video Evidence Attached</div><span class="ec-status ec-ignored">IGNORED</span><div class="ec-note">Submitted March 4th. Acknowledged March 4th. Status unchanged. Submitter later timed out for "tone."</div></div>
+        <div class="exploit-card"><div class="ec-num">REPORT #803</div><div class="ec-title">Detailed Bug Submission — Reproducible</div><span class="ec-status ec-ignored">CLOSED INSTANTLY</span><div class="ec-note">Closed 11 minutes after submission. No response given. An emoji complaint filed same day: resolved in 3 minutes.</div></div>
+        <div class="exploit-card"><div class="ec-num">REPORT #799</div><div class="ec-title">Game-Breaking Vulnerability</div><span class="ec-status ec-pending">PENDING — 47 DAYS</span><div class="ec-note">Currently in review. Has been "in review" since January. Colonel Luke has issued 200 bans in the same period.</div></div>
+        <div class="exploit-card"><div class="ec-num">REPORT #788</div><div class="ec-title">Actual Rule Violation — Screenshots Provided</div><span class="ec-status ec-ignored">NO ACTION</span><div class="ec-note">Violation committed by a moderator's friend. Report reviewed by that moderator. Outcome: "no wrongdoing found."</div></div>
+        <div class="exploit-card"><div class="ec-num">REPORT #771</div><div class="ec-title">Cheating Evidence — Fully Documented</div><span class="ec-status ec-pending">PENDING — 62 DAYS</span><div class="ec-note">Staff responded: "we'll look into it." This was 62 days ago. The cheater has since been promoted to helper.</div></div>
+        <div class="exploit-card"><div class="ec-num">JOKE #4421</div><div class="ec-title">User Said "Cute" — No Evidence Needed</div><span class="ec-status ec-ignored" style="border-color:var(--red);color:var(--red)">RESOLVED: 0.2 SECONDS</span><div class="ec-note">No report necessary. No evidence required. Immediate ban. Three follow-up paragraphs. Full tribunal convened.</div></div>
+      </div>
+    </div>
+
+    <!-- DAMAGE ANALYTICS -->
+    <div class="media-panel" id="tab-damage">
+      <div class="dmg-chart">
+        <div class="bar-t">Emotional Damage Analytics — Moderation Authority Internal</div>
+        <div class="dmg-row"><div class="dmg-lbl">Moderator ego instability</div><div class="dmg-track"><div class="dmg-fill" data-w="97"><span class="dmg-v">97%</span></div></div></div>
+        <div class="dmg-row"><div class="dmg-lbl">Average overreaction speed</div><div class="dmg-track"><div class="dmg-fill" data-w="99"><span class="dmg-v">0.2s avg</span></div></div></div>
+        <div class="dmg-row"><div class="dmg-lbl">Hours spent monitoring jokes</div><div class="dmg-track"><div class="dmg-fill" data-w="87"><span class="dmg-v">14h/day</span></div></div></div>
+        <div class="dmg-row"><div class="dmg-lbl">Users timed out over non-issues</div><div class="dmg-track"><div class="dmg-fill" data-w="94"><span class="dmg-v">4,891</span></div></div></div>
+        <div class="dmg-row"><div class="dmg-lbl">Grass Deficiency Index</div><div class="dmg-track"><div class="dmg-fill" data-w="100"><span class="dmg-v">MAXIMUM</span></div></div></div>
+        <div class="dmg-row"><div class="dmg-lbl">Rules applied consistently</div><div class="dmg-track"><div class="dmg-fill" data-w="3" style="background:var(--bg3)"><span class="dmg-v" style="color:var(--wm)">3%</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="media-panel" id="tab-timeline">
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Day 1</div><div class="tl-head">User used 🐒 emoji</div><div class="tl-body">Deployed in #general. Context: unclear. Colonel Luke online immediately.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Day 1 + 4 mins</div><div class="tl-head">Emergency Moderator Summit Called</div><div class="tl-body">Full staff assembled in voice channel. Life was already there. Fund arrives within minutes and immediately has opinions.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Day 1 + 22 mins</div><div class="tl-head">Compliment Detected in #general</div><div class="tl-body">Separate incident. User said "cute" about someone's pfp. Treated as a second emergency. Multi-tabbing begins.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Day 2</div><div class="tl-head">Five-Paragraph Response Deployed</div><div class="tl-body">Authored by Colonel Luke. Reviewed by Fund. Approved unanimously. User had already gone to sleep.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Day 3</div><div class="tl-head">Staff Enter Emotional Lockdown</div><div class="tl-body">After user's one-word reply to the five paragraphs. Word: "ok." This was treated as escalation.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Day 6</div><div class="tl-head">Exploit Report #799 Still Pending</div><div class="tl-body">Filed before any of this started. Still in review. No update. Staff busy with emoji philosophy.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Day 14</div><div class="tl-head">Colonel Luke Has Not Logged Off</div><div class="tl-body">Fourteen consecutive days of active monitoring. Fried chicken supplies: holding. Grass: untouched.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REPORT SIMULATOR -->
+<section class="sec" id="report" style="background:var(--bg2)">
+  <div class="container">
+    <div class="label">Public Safety Reporting Division</div>
+    <div class="stitle">Incident Reporting Center</div>
+    <p class="ssub">Report suspicious user behavior. All incidents escalated regardless of severity. Especially if severity is zero.</p>
+    <div class="report-wrap">
+      <div class="report-form-col">
+        <label class="flabel" style="margin-top:0">Offense to Report</label>
+        <select id="r-offense">
+          <option value="">Select the crime</option>
+          <option value="1">Saying "cute"</option>
+          <option value="2">Using 💀 emoji</option>
+          <option value="3">Having social skills</option>
+          <option value="4">Being employed</option>
+          <option value="5">Sending a meme</option>
+          <option value="6">Existing confidently</option>
+          <option value="7">Winning an argument against staff</option>
+          <option value="8">Touching grass</option>
+          <option value="9">Having a life outside Discord</option>
+          <option value="10">Laughing at wrong time</option>
+        </select>
+        <label class="flabel">Reported User</label>
+        <input type="text" id="r-user" placeholder="User#0000">
+        <label class="flabel">Additional Context</label>
+        <textarea id="r-context" placeholder="Describe the incident. It will be ignored if it contradicts staff feelings."></textarea>
+        <button class="btn-r" style="margin-top:1.2rem;width:100%;padding:13px" onclick="submitReport()">Submit Incident Report</button>
+      </div>
+      <div class="report-log-col">
+        <div class="t-specs-head" style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--wm);margin-bottom:.6rem">Threat Assessment</div>
+        <div class="threat-meter">
+          <div class="threat-level tl1" id="tl1">Mildly Problematic <span>01</span></div>
+          <div class="threat-level tl2" id="tl2">Emotionally Dangerous <span>02</span></div>
+          <div class="threat-level tl3" id="tl3">Moderator Triggering <span>03</span></div>
+          <div class="threat-level tl4" id="tl4">Catastrophic Vibes <span>04</span></div>
+          <div class="threat-level tl5" id="tl5">Server Ending Event <span>05</span></div>
+        </div>
+        <div class="incident-banner" id="incident-banner">
+          <div class="ib-head">⚠ CRITICAL INCIDENT DETECTED</div>
+          <div class="ib-sub" id="ib-text">Loading…</div>
+        </div>
+        <div class="report-log" id="report-log"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPEAL -->
+<section class="sec appeal-sec" id="appeal">
+  <div class="container">
+    <div class="label">Community Reintegration Request Portal</div>
+    <div class="stitle">Ban Appeal Simulator</div>
+    <p class="ssub">Every appeal is reviewed by our trained Emotional Response Specialists. Results are predetermined.</p>
+    <div class="appeal-wrap">
+      <div class="fake-stats">
+        <div class="fake-stat"><div class="fs-n">0.01%</div><div class="fs-l">Approval Rate</div></div>
+        <div class="fake-stat"><div class="fs-n">98.67%</div><div class="fs-l">Rejected Emotionally</div></div>
+        <div class="fake-stat"><div class="fs-n">2%</div><div class="fs-l">Lost in Staff Gossip</div></div>
+      </div>
+      <div class="appeal-box">
+        <label class="flabel" style="margin-top:0">Username</label>
+        <input type="text" id="a-user" placeholder="Your_Username#0000">
+        <label class="flabel">Select Your Crime</label>
+        <select id="a-offense">
+          <option value="">Choose alleged offense</option>
+          <option>Used an emoji (any emoji)</option>
+          <option>Said something kind</option>
+          <option>Laughed at wrong moment</option>
+          <option>Questioned a moderator decision</option>
+          <option>Had good energy</option>
+          <option>Posted "lol"</option>
+          <option>Double exclamation mark</option>
+          <option>Won an argument</option>
+          <option>Unclear — that's the problem</option>
+        </select>
+        <label class="flabel">Your Defense</label>
+        <textarea id="a-defense" placeholder="Explain yourself. The outcome is unaffected by your explanation."></textarea>
+        <label class="flabel">Have you touched grass recently?</label>
+        <select id="a-grass">
+          <option value="">Select response</option>
+          <option>Yes</option>
+          <option>No</option>
+          <option>I don't go outside</option>
+        </select>
+        <button class="btn-r" style="margin-top:1.2rem;width:100%;padding:13px" onclick="submitAppeal()">Submit for Immediate Denial</button>
+        <div class="proc-steps" id="proc-steps"><span id="proc-text">Initializing…</span></div>
+        <div class="proc-bar"><div class="proc-fill" id="proc-fill"></div></div>
+        <div class="denial-box" id="denial-box">
+          <div class="denial-h">APPEAL DENIED</div>
+          <div class="denial-case" id="denial-case">Case ref loading…</div>
+          <div class="denial-status">STATUS: PERMANENTLY CONSIDERED A THREAT</div>
+          <div class="denial-reason" id="denial-reason">Loading…</div>
+          <div class="denial-sig">— Colonel Luke, Supreme Commander<br>Moderation Integrity Initiative™ | Response time: 0.2 seconds</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALERTS LIVE -->
+<section class="sec" style="background:var(--bg2)" id="alerts">
+  <div class="container">
+    <div class="label">Live Security Feed</div>
+    <div class="stitle">Active Threat Alerts</div>
+    <p class="ssub">Continuously updated. Proportionality: none.</p>
+    <div class="alerts-wrap">
+      <div class="alert-row"><div class="alert-text">User expressed happiness unprompted. Motives unclear. Life has been monitoring since 3AM.</div><div class="alert-right"><span class="alert-level lv-c">CRITICAL</span>2 min ago</div></div>
+      <div class="alert-row"><div class="alert-text">Compliment detected in #general: "nice pfp." Sender flagged. Colonel Luke personally reviewing.</div><div class="alert-right"><span class="alert-level lv-h">HIGH</span>7 min ago</div></div>
+      <div class="alert-row"><div class="alert-text">HIGH RISK: User deployed 🐒 emoji. Context: ambiguous. Response: aggressive. Tribunal: convened.</div><div class="alert-right"><span class="alert-level lv-c">CRITICAL</span>11 min ago</div></div>
+      <div class="alert-row"><div class="alert-text">Moderator morale unstable. Fund currently writing three paragraphs about something nobody asked him about.</div><div class="alert-right"><span class="alert-level lv-h">HIGH</span>23 min ago</div></div>
+      <div class="alert-row"><div class="alert-text">Sarcasm threat detected by Torres. Tone unconfirmed as respectful. User muted preemptively.</div><div class="alert-right"><span class="alert-level lv-m">MEDIUM</span>41 min ago</div></div>
+      <div class="alert-row"><div class="alert-text">INTERNAL: Colonel Luke has typed 47 messages in 4 minutes. All unprompted. Classified as professionalism.</div><div class="alert-right"><span class="alert-level lv-i">INTERNAL</span>1 hr ago</div></div>
+      <div class="alert-row"><div class="alert-text">Exploit report #799 still pending (Day 47). Staff preoccupied with emoji philosophy. No ETA.</div><div class="alert-right"><span class="alert-level lv-i">NOTE</span>47 days ago</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo">MII™</div>
+        <p class="ft-tagline">The Moderation Integrity Initiative™ remains committed to protecting online communities from the devastating consequences of harmless interaction.</p>
+      </div>
+      <div class="ft-links">
+        <a href="#">Ban Policy</a>
+        <a href="#">Appeal Process (Closed)</a>
+        <a href="#">Report a Smile</a>
+        <a href="#">Staff Investigation Results (None)</a>
+        <a href="#">Exploit Reports (Pending Forever)</a>
+        <a href="#">Contact (Unavailable)</a>
+      </div>
+    </div>
+    <div class="ft-lex">🕊️ LONG LIVE LEX</div>
+    <div class="ft-bottom">
+      <div class="ft-copy">
+        © 2025–2026 Moderation Integrity Initiative™. All bans are final. All appeals are denied. All fun is prohibited.<br>
+        Any resemblance to emotionally unstable moderation teams is purely coincidental and legally protected under feelings law.<br>
+        All moderator feelings protected under international law. Grass touching strictly prohibited on company grounds.<br>
+        Appeals may be denied automatically for comedic efficiency. This is satire. Keep it that way. Lex lll 🕊️
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Bar chart animation
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-fill,.dmg-fill').forEach(b => { b.style.width = b.dataset.w + '%' });
+      barObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.bar-wrap,.dmg-chart,.analytics-sec').forEach(el=>barObs.observe(el));
+
+// Media tabs
+function switchTab(id, btn) {
+  document.querySelectorAll('.media-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  // trigger dmg charts
+  document.querySelectorAll('.dmg-fill').forEach(b=>{ b.style.width = b.dataset.w + '%' });
+}
+
+// Report simulator
+const reportLogs = {
+  1:["Analyzing 'cute' — severity: astronomical","Moderator feelings: compromised","Colonel Luke: notified","Case escalated despite zero threat","CRITICAL INCIDENT DETECTED"],
+  2:["💀 emoji detected — mortality implications unclear","Deploying emotional support staff","Life woke up","Escalating to philosophy department","Catastrophic vibe confirmed"],
+  3:["Social skill level: unacceptable","Cross-referencing with known friendly users","Suspicious confidence detected","Moderator panic: activated","High Risk User Identified"],
+  4:["Employment confirmed — server loyalty compromised","Running background check on job title","Scheduling 9-5 incompatibility review","Sending to HR (Fund)","Emotionally Dangerous classification applied"],
+  5:["Meme analyzed for tone","Humor threat level: moderate","Consulting the Anti-Fun Division","Director Chen: engaged","Server Ending Event: pending"],
+  6:["Confidence level: unacceptable","Deploying ego-balancing protocols","Detecting suspicious self-esteem","Moderator ego stability: critical","Catastrophic Vibes — full alert"],
+  7:["Argument win detected — damage assessment","Reviewing staff defeat logs","Colonel Luke: currently writing response","Fund: already has opinions","Moderator Triggering — escalation confirmed"],
+  8:["Grass touch confirmed — outdoor activity detected","Cross-referencing with server activity logs","User demonstrated real world awareness","This is considered high risk","Server Ending Event triggered"],
+  9:["External life confirmed — loyalty audit initiated","Checking last online timestamp","Hobbies detected — concerning","Life: investigating","Emotionally Dangerous — contact with outside world"],
+  10:["Laughter analysis initiated","Checking if Colonel Luke's post was involved","Reviewing context for disrespect","Tone catastrophic — escalating","High Risk — inappropriate joy detected"],
+};
+const threatLabels = ["Mildly Problematic","Emotionally Dangerous","Moderator Triggering","Catastrophic Vibes","Server Ending Event"];
+const bannerMsgs = {
+  1:"COMPLIMENT DETECTED\nMODERATOR PANIC ACTIVATED\nDEPLOYING EMOTIONAL SUPPORT STAFF",
+  2:"MORTALITY EMOJI DETECTED\nEXISTENTIAL THREAT ASSESSMENT INITIATED\nLIFE IS NOW AWAKE",
+  3:"SOCIAL SKILLS DETECTED\nHIGH RISK USER IDENTIFIED\nSTAFF DISCUSSING BEHIND CLOSED CHANNELS",
+  4:"EMPLOYMENT DETECTED\nLOYALTY: COMPROMISED\nFUND IS ON HIS WAY",
+  5:"UNAUTHORIZED HUMOR DETECTED\nDIRECTOR CHEN: RESPONDING\n#MEMES TEMPORARILY CLOSED",
+  6:"CONFIDENCE LEVEL: CRITICAL\nMODERATOR EGO STABILITY: FAILING\nCOLONEL LUKE: PERSONALLY OFFENDED",
+  7:"STAFF DEFEAT DETECTED\nCOLONEL LUKE IS WRITING A RESPONSE\nAPPEAL PRE-DENIED",
+  8:"GRASS TOUCH CONFIRMED\nOUTDOOR ACTIVITY: UNACCEPTABLE\nSERVER ENDING EVENT TRIGGERED",
+  9:"EXTERNAL LIFE CONFIRMED\nINVESTIGATION: INITIATED\nLIFE IS MONITORING",
+  10:"LAUGHTER AT WRONG TIME\nMODERATOR FEELINGS: SHATTERED\nPARAGRAPH RESPONSE: EN ROUTE",
+};
+const threatMap = {1:1,2:3,3:2,4:2,5:3,6:4,7:3,8:5,9:3,10:4};
+
+function submitReport(){
+  const v = document.getElementById('r-offense').value;
+  if(!v){alert("Please select an offense to report.");return;}
+  const logs = reportLogs[v];
+  const tLevel = threatMap[v]||2;
+  // reset
+  document.querySelectorAll('.threat-level').forEach(el=>el.classList.remove('active'));
+  document.getElementById('report-log').innerHTML='';
+  document.getElementById('incident-banner').style.display='none';
+  // animate threat meter
+  for(let i=1;i<=tLevel;i++){
+    setTimeout(()=>document.getElementById('tl'+i).classList.add('active'),i*300);
+  }
+  // animate logs
+  logs.forEach((log,i)=>{
+    setTimeout(()=>{
+      const el = document.createElement('div');
+      el.className = 'log-entry';
+      el.style.animationDelay = '0s';
+      el.textContent = '▸ ' + log;
+      document.getElementById('report-log').appendChild(el);
+    },(i+1)*600);
+  });
+  // banner
+  setTimeout(()=>{
+    const b = document.getElementById('incident-banner');
+    b.style.display='block';
+    document.getElementById('ib-text').textContent = bannerMsgs[v]||'INCIDENT DETECTED\nMODERATOR RESPONSE INITIATED';
+  },logs.length*600+300);
+}
+
+// Appeal simulator
+const procSteps = [
+  "Analyzing emotional damage…",
+  "Reviewing dangerous behavior…",
+  "Consulting the Moderator Council…",
+  "Escalating to Colonel Luke…",
+  "Generating denial…"
+];
+const denialReasons = [
+  "Appeal denied due to suspicious levels of confidence. Confidence in one's own innocence is itself a violation of staff emotional safety.",
+  "User displayed dangerous levels of sarcasm. Tone analysis returned catastrophic results. No further review warranted.",
+  "Detected unauthorized compliment activity in prior interactions. Pattern of friendliness noted. Concerning.",
+  "Staff morale was negatively impacted by your presence. This is legally sufficient grounds for denial under Policy 7.4.",
+  "Emoji usage remains under investigation. Submitting an appeal before investigation concludes constitutes interference.",
+  "Appeal rejected for possessing employment. Real-world responsibilities compromise server dedication and therefore trust.",
+  "User appears capable of independent thought. This is a known risk factor. Denial recommended by all staff.",
+  "Potential threat to moderator ego stability detected. We cannot allow your return at this time.",
+  "Conversation vibes failed internal review. Vibe assessment is subjective and final.",
+  "Appeal contained excessive punctuation. Commas used in aggressive manner. Tone: unacceptable.",
+  "Moderator feelings remain unresolved. An appeal cannot proceed while staff are still upset about it.",
+  "Too attractive to be trusted. We don't make the rules. Wait — we do. This is a rule now.",
+  "Possible grass-touching detected in your location metadata. Outdoor activity suggests lack of server commitment.",
+  "We didn't like the vibe. This is legally sufficient per internal policy and Colonel Luke's personal feelings.",
+];
+
+function submitAppeal(){
+  const user = document.getElementById('a-user').value || 'Anonymous';
+  const offense = document.getElementById('a-offense').value || 'unspecified offense';
+  const steps = document.getElementById('proc-steps');
+  const fill = document.getElementById('proc-fill');
+  const box = document.getElementById('denial-box');
+  box.style.display='none';
+  steps.style.display='block';
+  fill.style.width='0';
+  let step=0;
+  const run = ()=>{
+    if(step<procSteps.length){
+      document.getElementById('proc-text').textContent = procSteps[step];
+      fill.style.transition = 'width .6s linear';
+      fill.style.width = ((step+1)/procSteps.length*100)+'%';
+      step++;
+      setTimeout(run,700);
+    } else {
+      const ref = Math.floor(4000+Math.random()*900);
+      document.getElementById('denial-case').textContent = `Case Ref. #${ref} — ${user} — ${offense}`;
+      document.getElementById('denial-reason').textContent = denialReasons[Math.floor(Math.random()*denialReasons.length)];
+      box.style.display='block';
+      box.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+  };
+  setTimeout(run,200);
+}
+
+// Scanner popup
+const scanMsgs = [
+  "Analyzing joke severity…",
+  "Potential sarcasm detected.",
+  "Confidence levels unacceptable.",
+  "User may possess real-world responsibilities.",
+  "Emoji threat scan: complete. Results: concerning.",
+  "Detecting unauthorized good vibes…",
+  "Grass proximity alert.",
+  "Employment confirmed — flagging for review.",
+];
+let scanTimer;
+function triggerScanner(){
+  const sc = document.getElementById('scanner');
+  document.getElementById('scanner-msg').textContent = scanMsgs[Math.floor(Math.random()*scanMsgs.length)];
+  sc.style.display='block';
+  clearTimeout(scanTimer);
+  scanTimer = setTimeout(()=>sc.style.display='none', 5000);
+}
+setTimeout(triggerScanner, 4000);
+setInterval(()=>{ if(Math.random()>.6) triggerScanner(); }, 15000);
+</script>
+</body>
+</html>
